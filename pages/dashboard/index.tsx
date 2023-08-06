@@ -1,0 +1,29 @@
+import Layout from "@/components/layout/Layout";
+import DasboardPage from "@/components/templates/DashboardPage/DashBoardPage";
+import useRedirectByUserCheck from "@/hooks/useRedirectByUserCheck";
+import Head from "next/head";
+
+function Dashboard() {
+  const { shouldLoadContent } = useRedirectByUserCheck()
+
+  return (
+    <>
+      <Head>
+        <title>Запчасти Для Бойлеров | {shouldLoadContent ? 'Главная' : ''}</title>
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE-edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
+      </Head>
+      {shouldLoadContent && <Layout>
+        <main>
+          <DasboardPage />
+          <div className="overlay" />
+        </main>
+      </Layout>}
+    </>
+  );
+}
+
+
+export default Dashboard
