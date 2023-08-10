@@ -21,7 +21,7 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
     const [spinner, setSpinner] = useState(false);
 
 
-    const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart, setSpinner)
+    const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart)
 
 
     return (

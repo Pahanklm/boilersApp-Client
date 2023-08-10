@@ -27,6 +27,13 @@ const DasboardPage = () => {
         loadBoilerParts()
     }, [])
 
+    useEffect(() => {
+        if (shoppingCart.length) {
+            setShowAlert(true)
+            return
+        }
+        setShowAlert(false)
+    }, [shoppingCart.length])
     const loadBoilerParts = async () => {
         try {
             setSpinner(true)

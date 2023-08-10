@@ -4,16 +4,18 @@ import {
   removeFromCartFx,
   updateCartItemFx,
 } from '@/app/api/shopping-cart'
-import { removeShoppingCartItem, updateShoppingCart } from '@/context/shopping-cart'
+import {
+  removeShoppingCartItem,
+  updateCartItemTotalPrice,
+  updateShoppingCart,
+} from '@/context/shopping-cart'
 
 export const toggleCartItem = async (
   username: string,
   partId: number,
-  isInCart: boolean,
-  setSpinner: (arg0:boolean) => void
+  isInCart: boolean
 ) => {
   try {
-    setSpinner(true)
     if (isInCart) {
       await removeFromCartFx(`/shopping-cart/one/${partId}`)
       removeShoppingCartItem(partId)
@@ -27,22 +29,18 @@ export const toggleCartItem = async (
     })
 
     updateShoppingCart(data)
-
   } catch (error) {
     toast.error((error as Error).message)
   }
-  finally {setSpinner(false)}
 }
 
-export const removeItemFromCart = async (partId: number, setSpinner: (arg0:boolean) => void) => {
+export const removeItemFromCart = async (partId: number) => {
   try {
-    setSpinner(true)
     await removeFromCartFx(`/shopping-cart/one/${partId}`)
     removeShoppingCartItem(partId)
   } catch (error) {
     toast.error((error as Error).message)
   }
-  finally {setSpinner(false)}
 }
 
 export const updateTotalPrice = async (total_price: number, partId: number) => {
@@ -51,5 +49,5 @@ export const updateTotalPrice = async (total_price: number, partId: number) => {
     payload: { total_price },
   })
 
+  updateCartItemTotalPrice({ partId, total_price: data.total_price })
 }
-

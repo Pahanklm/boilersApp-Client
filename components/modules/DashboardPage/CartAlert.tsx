@@ -1,14 +1,16 @@
 import { $mode } from "@/context/mode";
+import { $totalPrice } from "@/context/shopping-cart";
+import styles from '@/styles/dashboard/index.module.scss';
 import { IcartAlertProps } from "@/types/dashboard";
-import { useStore } from "effector-react";
-import styles from '@/styles/dashboard/index.module.scss'
 import { formatPrice } from "@/utils/common";
+import { useStore } from "effector-react";
 import Link from "next/link";
 
 
 const CartAlert = ({ count, closeAlert }: IcartAlertProps) => {
 
     const mode = useStore($mode)
+    const totalPrice = useStore($totalPrice)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
 
     const showCountMessage = (count: string) => {
@@ -25,7 +27,7 @@ const CartAlert = ({ count, closeAlert }: IcartAlertProps) => {
         <>
             <div className={`${styles.dashboard__alert__left} ${darkModeClass}`}>
                 <span>В корзине {count} {showCountMessage(`${count}`)}</span>
-                <span>на сумму {formatPrice(0)}</span>
+                <span>на сумму {formatPrice(totalPrice)} UAH</span>
             </div>
             <div className={styles.dashboard__alert__right}>
                 <Link href='/order' passHref legacyBehavior>
