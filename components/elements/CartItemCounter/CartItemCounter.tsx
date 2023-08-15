@@ -21,7 +21,7 @@ const CartItemCounter = ({
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const spinnerDarkModeClass =
         mode === 'dark' ? '' : `${spinnerStyles.dark_mode}`
-    const [spinner, setPinner] = useState(false)
+    const [spinner, setSpinner] = useState(false)
     const [count, setCount] = useState(initialCount)
     const [disableIncrease, setDisableIncrease] = useState(false)
     const [disableDecrease, setDisableDecrease] = useState(false)
@@ -44,7 +44,7 @@ const CartItemCounter = ({
         }
         try {
             setDelayCount(true)
-            setPinner(true)
+            setSpinner(true)
             increasePrice()
             setDisableDecrease(false)
             setCount(count + 1)
@@ -61,7 +61,7 @@ const CartItemCounter = ({
             setTimeout(() => {
                 setDelayCount(false)
             }, 50);
-            setPinner(false)
+            setSpinner(false)
         }
     }
 
@@ -71,7 +71,7 @@ const CartItemCounter = ({
                 return
             }
             setDelayCount(true)
-            setPinner(true)
+            setSpinner(true)
             decreasePrice()
             setDisableIncrease(false)
             setCount(count - 1)
@@ -88,7 +88,7 @@ const CartItemCounter = ({
             setTimeout(() => {
                 setDelayCount(false)
             }, 50);
-            setPinner(false)
+            setSpinner(false)
         }
     }
 

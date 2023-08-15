@@ -72,7 +72,7 @@ const DashboardSlider = ({
                         <img src={JSON.parse(item.images)[0]} alt={item.name} />
                         <div className={styles.dashboard__slide__inner}>
                             <Link
-                                href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
+                                href={`/catalog/${item.id}`}
                                 passHref
                                 legacyBehavior
                             >

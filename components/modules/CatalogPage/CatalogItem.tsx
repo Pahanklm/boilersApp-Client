@@ -1,3 +1,4 @@
+import { removeFromCartFx } from '@/app/api/shopping-cart'
 import CartHoverCheckedSvg from '@/components/elements/CartHoverCheckedSvg/CartHoverCheckedSvg'
 import CartHoverSvg from '@/components/elements/CartHoverSvg/CartHoverSvg'
 import { $mode } from '@/context/mode'
@@ -10,7 +11,6 @@ import { formatPrice } from '@/utils/common'
 import { toggleCartItem } from '@/utils/shopping-cart'
 import { useStore } from 'effector-react'
 import Link from 'next/link'
-import { useState } from 'react'
 
 const CatalogItem = ({ item }: { item: IBoilerPart }) => {
     const mode = useStore($mode)
@@ -18,8 +18,7 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
     const shoppingCart = useStore($shoppingCart)
     const isInCart = shoppingCart.some((cartItem) => cartItem.partId === item.id)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
-    const [spinner, setSpinner] = useState(false);
-
+    const spinner = useStore(removeFromCartFx.pending)
 
     const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart)
 

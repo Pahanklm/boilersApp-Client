@@ -1,4 +1,5 @@
 import { getBoilerPartsFx } from "@/app/api/boilerParts";
+import { removeFromCartFx } from "@/app/api/shopping-cart";
 import CartHoverCheckedSvg from "@/components/elements/CartHoverCheckedSvg/CartHoverCheckedSvg";
 import CartHoverSvg from "@/components/elements/CartHoverSvg/CartHoverSvg";
 import DashboardSlider from "@/components/modules/DashboardPage/DashboardSlider";
@@ -29,8 +30,8 @@ const PartPage = () => {
     const user = useStore($user)
     const boilerParts = useStore($boilerParts)
     const isInCart = cartItems.some((item) => item.partId === boilerPart.id)
-    const [spinnerToggleCart, setSpinnerToggleCart] = useState(false);
-    const [spinnerSlider, setSpinnerSlider] = useState(false);
+    const spinnerToggleCart = useStore(removeFromCartFx.pending)
+    const spinnerSlider = useStore(getBoilerPartsFx.pending);
     const isMobile = useMediaQuery(850)
 
     useEffect(() => {
@@ -39,7 +40,6 @@ const PartPage = () => {
 
     const loadBoilerPart = async () => {
         try {
-            setSpinnerSlider(true)
             const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
             setBoilerParts(data)
             setBoilerPartsByPopularity()
@@ -47,7 +47,6 @@ const PartPage = () => {
             toast.error((error as Error).message)
         }
         finally {
-            setSpinnerSlider(false)
         }
     }
 

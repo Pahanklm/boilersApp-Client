@@ -1,29 +1,27 @@
 import Layout from "@/components/layout/Layout";
-import OrderPage from "@/components/templates/OrderPage/OrderPage";
-import useRedirectByUserCheck from "@/hooks/useRedirectByUserCheck";
+import AboutPage from "@/components/templates/AboutPage/AboutPage";
 import Head from "next/head";
 
-function Order() {
-    const { shouldLoadContent } = useRedirectByUserCheck()
+function About() {
 
     return (
         <>
             <Head>
-                <title>Запчасти Для Бойлеров | {shouldLoadContent ? 'Оформелние Заказа' : ''}</title>
+                <title>Запчасти Для Бойлеров | О компании</title>
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE-edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.svg" />
             </Head>
-            {shouldLoadContent && <Layout>
+            <Layout>
                 <main>
-                    <OrderPage />
+                    <AboutPage />
                     <div className="overlay" />
                 </main>
-            </Layout>}
+            </Layout>
         </>
     );
 }
 
 
-export default Order
+export default About

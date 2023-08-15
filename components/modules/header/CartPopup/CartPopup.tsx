@@ -1,24 +1,24 @@
-import { useStore } from 'effector-react'
-import { forwardRef, useEffect } from 'react'
-import Link from 'next/link'
-import { toast } from 'react-toastify'
-import { AnimatePresence, motion } from 'framer-motion'
-import { $mode } from '@/context/mode'
-import { IWrappedComponentProps } from '@/types/common'
-import { withClickOutside } from '@/utils/withClickOutside'
+import { getCartItemsFx } from '@/app/api/shopping-cart'
 import ShoppingCartSvg from '@/components/elements/ShoppingCartSvg/ShoppingCartSvg'
+import { $mode } from '@/context/mode'
 import {
     $disableCart,
     $shoppingCart,
     $totalPrice,
     setShoppingCart,
-    setTotalPrice,
+    setTotalPrice
 } from '@/context/shopping-cart'
-import CartPopupItem from './CartPopupItem'
-import { getCartItemsFx } from '@/app/api/shopping-cart'
 import { $user } from '@/context/user'
 import styles from '@/styles/cartPopup/index.module.scss'
+import { IWrappedComponentProps } from '@/types/common'
 import { formatPrice } from '@/utils/common'
+import { withClickOutside } from '@/utils/withClickOutside'
+import { useStore } from 'effector-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
+import { forwardRef, useEffect } from 'react'
+import { toast } from 'react-toastify'
+import CartPopupItem from './CartPopupItem'
 
 const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     ({ open, setOpen }, ref) => {
@@ -44,7 +44,8 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
                     0
                 )
             )
-            console.log(shoppingCart);
+            console.log(totalPrice);
+
         }, [shoppingCart])
 
         const loadCartItems = async () => {

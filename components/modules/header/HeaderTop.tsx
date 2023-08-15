@@ -27,7 +27,7 @@ const HeaderTop = () => {
                 <nav className={`${styles.header__nav} ${open ? styles.open : ''} ${darkModeClass}`}>
                     <ul className={styles.header__nav__list}>
                         <li className={styles.header__nav__list__item}>
-                            <Link href="/shopping-payment" passHref legacyBehavior>
+                            <Link href="/shipping-payment" passHref legacyBehavior>
                                 <a className={`${styles.header__nav__list__item__link} ${darkModeClass}`} onClick={closePopup}>
                                     Доставка и оплата
                                 </a>
@@ -55,7 +55,7 @@ const HeaderTop = () => {
                             </Link>
                         </li>
                         <li className={styles.header__nav__list__item}>
-                            <Link href="/wholesale-byers" passHref legacyBehavior>
+                            <Link href="/wholesale-buyers" passHref legacyBehavior>
                                 <a className={`${styles.header__nav__list__item__link} ${darkModeClass}`} onClick={closePopup}>
                                     Оптовым покупателям
                                 </a>

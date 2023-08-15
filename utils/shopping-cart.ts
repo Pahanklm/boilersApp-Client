@@ -48,6 +48,7 @@ export const updateTotalPrice = async (total_price: number, partId: number) => {
     url: `/shopping-cart/total-price/${partId}`,
     payload: { total_price },
   })
+  
 
   updateCartItemTotalPrice({ partId, total_price: data.total_price })
 }

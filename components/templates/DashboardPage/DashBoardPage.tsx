@@ -61,7 +61,7 @@ const DasboardPage = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className={`${styles.dashboard__alert} ${darkModeClass}`}
-                    ><CartAlert count={shoppingCart.length} closeAlert={closeAlert} /></motion.div>}
+                    ><CartAlert count={shoppingCart.reduce((defaultCount, item) => defaultCount + item.count, 0)} closeAlert={closeAlert} /></motion.div>}
                 </AnimatePresence>
                 <div className={styles.dashboard__brands}>
                     <BrandsSlider />
