@@ -34,6 +34,18 @@ const CatalogFilters = ({
 
 
 
+    useEffect(() => {
+        if (!maxPriceLoaded) {
+            maxPriceBoilerParts();
+        }
+    }, [maxPriceLoaded]);
+
+    useEffect(() => {
+        if (maxPriceLoaded) {
+            applyFiltersFromQuery();
+        }
+    }, [maxPriceLoaded]);
+
 
     const updatePriseFromQuery = (priceFrom: number, priceTo: number) => {
         setAllItemsLowAndMaxPrice([+priceFrom, +priceTo])
@@ -154,18 +166,6 @@ const CatalogFilters = ({
 
 
 
-    useEffect(() => {
-        if (!maxPriceLoaded) {
-            maxPriceBoilerParts();
-        }
-    }, [maxPriceLoaded]);
-
-    useEffect(() => {
-        if (maxPriceLoaded) {
-            applyFiltersFromQuery();
-        }
-    }, [maxPriceLoaded]);
-
     const applyFiltersFromQuery = async () => {
         try {
             const { isValidBoilerQuery, isValidPartsQuery, isValidPriceQuery, priceFromQueryValue, priceToQueryValue, partsQueryValue, boilerQueryValue } = checkQueryParams(router)
@@ -224,6 +224,7 @@ const CatalogFilters = ({
                 updateParamsAndFiltersFromQuery(() => {
                     updatePriseFromQuery(+priceFromQueryValue, +priceToQueryValue)
                 }, `${currentPage}${priceQuery}`)
+                console.log(1);
                 return
             }
             if (isValidBoilerQuery) {

@@ -13,3 +13,8 @@ export const getApproxGeolocationFx = createEffect(async () => {
 
     return data
 })
+export const getRegistrationGeolocationFx = createEffect(async (url: string) => {
+    const { data } = await api.get(url)
+  
+    return data
+  })

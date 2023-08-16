@@ -44,7 +44,6 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
                     0
                 )
             )
-            console.log(totalPrice);
 
         }, [shoppingCart])
 

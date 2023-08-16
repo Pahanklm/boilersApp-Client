@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import SignUpForm from '@/components/modules/AuthPage/SignUpForm'
 import styles from '@/styles/auth/index.module.scss'
@@ -6,6 +6,8 @@ import ModeToggler from '@/components/elements/ModeToggler/ModeToggler'
 import { useStore } from 'effector-react'
 import { $mode } from '@/context/mode'
 import SignInForm from '@/components/modules/AuthPage/SignInForm'
+import { getCity } from '@/utils/getCity'
+import { $userCity, setUserCity } from '@/context/user'
 
 const AuthPage = () => {
   const isMedia800 = useMediaQuery(800)
@@ -18,6 +20,7 @@ const AuthPage = () => {
   const bContainer = useRef() as MutableRefObject<HTMLDivElement>
   const mode = useStore($mode)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
+
 
   const switchForm = () => {
     switchCtn.current.classList.add(styles.is_gx)
@@ -34,6 +37,12 @@ const AuthPage = () => {
     bContainer.current.classList.toggle(styles.is_txl)
     bContainer.current.classList.toggle(styles.is_z200)
   }
+
+
+
+  useEffect(() => {
+    getCity();
+  }, []);
 
   return (
     <div className={`${styles.main} ${darkModeClass}`}>

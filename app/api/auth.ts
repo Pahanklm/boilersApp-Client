@@ -6,8 +6,8 @@ import { HTTPStatus } from '@/constans'
 import { ISignInFx, ISignUpFx } from '@/types/Auth'
 
 export const singUpFx = createEffect(
-  async ({ url, username, password, email }: ISignUpFx) => {
-    const { data } = await api.post(url, { username, password, email })
+  async ({ url, username, password, email,registrationCity,registrationStreet}: ISignUpFx) => {
+    const { data } = await api.post(url, { username, password, email, registrationCity,registrationStreet })
 
     if (data.warningMessage) {
       toast.warning(data.warningMessage)

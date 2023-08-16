@@ -3,6 +3,7 @@ import EmailInput from '@/components/elements/AuthPage/EmailInput'
 import NameInput from '@/components/elements/AuthPage/NameInput'
 import PasswordInput from '@/components/elements/AuthPage/PasswordInput'
 import { $mode } from '@/context/mode'
+import { $userCity } from '@/context/user'
 import styles from '@/styles/auth/index.module.scss'
 import spinnerStyles from '@/styles/spinner/index.module.scss'
 import { IInputs } from '@/types/Auth'
@@ -20,7 +21,10 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
     resetField,
   } = useForm<IInputs>()
   const mode = useStore($mode)
+  const city = useStore($userCity)
   const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
+
+
 
   const onSubmit = async (data: IInputs) => {
     try {
@@ -30,6 +34,8 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
         username: data.name,
         password: data.password,
         email: data.email,
+        registrationCity: city.city,
+        registrationStreet: city.street
       })
 
       if (!userData) {

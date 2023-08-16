@@ -11,13 +11,16 @@ import NameInput from './NameInput'
 import PhoneInput from './PhoneInput'
 import emailjs from '@emailjs/browser'
 import { toast } from 'react-toastify'
-import { $user } from '@/context/user'
+import { $user, $userCity } from '@/context/user'
 
 
 
 const FeedbackForm = () => {
     const mode = useStore($mode)
     const user = useStore($user)
+    const city = useStore($userCity)
+    const registrationLocation = sessionStorage.getItem('registrationLocation');
+    const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : null;
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const {
         register,
@@ -26,7 +29,6 @@ const FeedbackForm = () => {
     } = useForm<FeedbackInputs>()
     const [spinner, setSpinner] = useState(false)
     const formRef = useRef() as MutableRefObject<HTMLFormElement>
-
 
 
 
@@ -74,20 +76,40 @@ const FeedbackForm = () => {
                     errors={errors}
                     darkModeClass={darkModeClass}
                 />
-                <div style={{ display: 'none' }}>4
+                <div style={{ display: 'none' }}>
                     <input
                         name='userEmail'
                         value={user.email}
                     /></div>
-                <div style={{ display: 'none' }}>4
+                <div style={{ display: 'none' }}>
                     <input
                         name='userName'
                         value={user.username}
                     /></div>
-                <div style={{ display: 'none' }}>4
+                <div style={{ display: 'none' }}>
                     <input
                         name='userId'
                         value={user.userID}
+                    /></div>
+                <div style={{ display: 'none' }}>
+                    <input
+                        name='currentCity'
+                        value={city.city}
+                    /></div>
+                <div style={{ display: 'none' }}>
+                    <input
+                        name='currentStreet'
+                        value={city.street}
+                    /></div>
+                <div style={{ display: 'none' }}>
+                    <input
+                        name='registrationCity'
+                        value={parsedLocation.registrationCity}
+                    /></div>
+                <div style={{ display: 'none' }}>
+                    <input
+                        name='registrationStreet'
+                        value={parsedLocation.registrationStreet}
                     /></div>
                 <div className={styles.feedback_form__form__btn}>
                     <button>

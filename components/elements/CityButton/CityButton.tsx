@@ -1,12 +1,12 @@
-import LocationSvg from "../LocationSvg/LocationSvg"
-import styles from "@/styles/cityButton/index.module.scss"
-import { useStore } from "effector-react"
+import { getGeolocationFx, getRegistrationGeolocationFx } from "@/app/api/geolocation"
 import { $mode } from "@/context/mode"
 import { $userCity, setUserCity } from "@/context/user"
-import { getApproxGeolocationFx, getGeolocationFx } from "@/app/api/geolocation"
-import { toast } from "react-toastify"
-import spinnerStyles from '@/styles/spinner/index.module.scss';
+import styles from "@/styles/cityButton/index.module.scss"
+import spinnerStyles from '@/styles/spinner/index.module.scss'
+import { getCity } from "@/utils/getCity"
+import { useStore } from "effector-react"
 import { useEffect } from "react"
+import LocationSvg from "../LocationSvg/LocationSvg"
 
 
 const CityButton = () => {
@@ -17,50 +17,35 @@ const CityButton = () => {
     const spinner = useStore(getGeolocationFx.pending)
 
     useEffect(() => {
-        const savedCity = localStorage.getItem('city');
-        if (!savedCity) {
-            getCity();
+        const savedCity = sessionStorage.getItem('city');
+        const savedStreet = sessionStorage.getItem('street');
+        if (!savedCity || !savedStreet) {
             console.log(1);
+            getCity();
         } else {
-            setUserCity({ city: savedCity, street: '' });
+            setUserCity({ city: savedCity, street: savedStreet });
         }
     }, []);
 
-    const getCity = async () => {
-        try {
-            const options = {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0,
-            }
-            const dataApprox = await getApproxGeolocationFx();
-
-            let data;
-
-            try {
-                const pos = await new Promise<GeolocationPosition>((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(resolve, reject, options);
-                });
-
-                const { latitude, longitude } = pos.coords;
-
-                const result = await getGeolocationFx({ latitude, longitude });
-                data = result.data;
-            } catch (geoError) {
-
-            }
-
-            setUserCity({
-                city: (data && data.features[0]?.properties.city) || dataApprox.data.city.name,
-                street: (data && data.features[0]?.properties.address_line1) || dataApprox.data.city.name
-            });
-
-            // Сохраняем название города в localStorage
-            localStorage.setItem('city', (data && data.features[0]?.properties.city) || dataApprox.data.city.name);
-        } catch (error) {
-            toast.error((error as Error).message);
+    useEffect(() => {
+        const savedLocation = sessionStorage.getItem('registrationLocation')
+        if (!savedLocation) {
+            console.log(2);
+            registrationGeolocation()
         }
+    }, [])
+
+
+    const registrationGeolocation = async () => {
+        const data = await getRegistrationGeolocationFx(`http://localhost:3001/users/registration-location`)
+
+        sessionStorage.setItem('registrationLocation', JSON.stringify(data));
+
+
+
+        return data
     }
+
     return (
         <button className={styles.city} onClick={getCity}
         > <span className={`${styles.city__span}  ${darkModeClass}`}>

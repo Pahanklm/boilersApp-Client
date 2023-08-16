@@ -16,6 +16,8 @@ export interface ISignUpFx {
   username: string
   password: string
   email: string
+  registrationCity: string
+  registrationStreet: string
 }
 
 export interface ISignInFx {
