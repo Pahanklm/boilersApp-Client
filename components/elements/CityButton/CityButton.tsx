@@ -1,4 +1,4 @@
-import { getGeolocationFx, getRegistrationGeolocationFx } from "@/app/api/geolocation"
+import { getGeolocationFx, getRegistrationGeolocationFx, postCurrentGeolocationFx } from "@/app/api/geolocation"
 import { $mode } from "@/context/mode"
 import { $userCity, setUserCity } from "@/context/user"
 import styles from "@/styles/cityButton/index.module.scss"
@@ -20,24 +20,43 @@ const CityButton = () => {
         const savedCity = sessionStorage.getItem('city');
         const savedStreet = sessionStorage.getItem('street');
         if (!savedCity || !savedStreet) {
-            console.log(1);
             getCity();
         } else {
             setUserCity({ city: savedCity, street: savedStreet });
         }
+        updateCurrentLocation()
     }, []);
 
     useEffect(() => {
         const savedLocation = sessionStorage.getItem('registrationLocation')
         if (!savedLocation) {
-            console.log(2);
             registrationGeolocation()
         }
     }, [])
 
+    const updateCurrentLocation = async () => {
+        const city = sessionStorage.getItem('city');
+        const street = sessionStorage.getItem('street');
+
+        const requestData = {
+            currentCity: city,
+            currentStreet: street,
+        };
+
+        try {
+            const data = await postCurrentGeolocationFx(requestData);
+            return data;
+        } catch (error) {
+            console.error('An error occurred while updating current location:', error);
+        }
+    };
+
+
+
+
 
     const registrationGeolocation = async () => {
-        const data = await getRegistrationGeolocationFx(`http://localhost:3001/users/registration-location`)
+        const data = await getRegistrationGeolocationFx(`users/registration-location`)
 
         sessionStorage.setItem('registrationLocation', JSON.stringify(data));
 

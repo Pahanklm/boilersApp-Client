@@ -72,7 +72,7 @@ const DashboardSlider = ({
                         <img src={JSON.parse(item.images)[0]} alt={item.name} />
                         <div className={styles.dashboard__slide__inner}>
                             <Link
-                                href={`/catalog/${item.id}`}
+                                href={goToPartPage ? `/catalog/${item.id}` : '/catalog'}
                                 passHref
                                 legacyBehavior
                             >
@@ -86,13 +86,13 @@ const DashboardSlider = ({
                                 Артикул: {item.vendor_code}
                             </span>
                             <span className={styles.dashboard__slide__price}>
-                                {formatPrice(item.price)} UAH
+                                {formatPrice(item.price)} P
                             </span>
                         </div>
                     </div>
                 ))
             ) : (
-                <span className={`${styles.dashboard__empty} ${darkModeClass}`}>Список товаров пуст....</span>
+                <span>Список товаров пуст....</span>
             )}
         </Slider>
     )

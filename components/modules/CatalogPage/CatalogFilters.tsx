@@ -224,7 +224,6 @@ const CatalogFilters = ({
                 updateParamsAndFiltersFromQuery(() => {
                     updatePriseFromQuery(+priceFromQueryValue, +priceToQueryValue)
                 }, `${currentPage}${priceQuery}`)
-                console.log(1);
                 return
             }
             if (isValidBoilerQuery) {

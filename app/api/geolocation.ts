@@ -14,7 +14,17 @@ export const getApproxGeolocationFx = createEffect(async () => {
     return data
 })
 export const getRegistrationGeolocationFx = createEffect(async (url: string) => {
-    const { data } = await api.get(url)
+    const { data } = await api.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/${url}`)
   
     return data
   })
+  export const postCurrentGeolocationFx = createEffect(async (requestData: object) => {
+    try {
+        const { data } = await api.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/update-location`, requestData);
+        return data;
+    } catch (error) {
+        console.error('An error occurred while posting current geolocation:', error);
+        throw error;
+    }
+});
+

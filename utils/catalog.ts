@@ -36,7 +36,6 @@ export const partsManufacturers = [
     'Croataia',
 ].map(createManufacturersCheckObj)
 
-const checkPriceFromQuery = (price: number) => price && !isNaN(price) && price >= 0 && price <= 10000
 
 
 export const checkQueryParams = (router : NextRouter) => {
@@ -61,9 +60,18 @@ export const checkQueryParams = (router : NextRouter) => {
         ) as string
     ))
 
+    
+    const checkPriceFromQuery = (price: number | string) => price  && price >= 0
+    
+    
+    console.log(+priceFromQueryValue);
+    console.log(+priceToQueryValue);
+    
     const isValidBoilerQuery = Array.isArray(boilerQueryValue) && !!boilerQueryValue?.length
     const isValidPartsQuery = Array.isArray(partsQueryValue) && !!partsQueryValue?.length
-    const isValidPriceQuery = checkPriceFromQuery(+priceFromQueryValue) && checkPriceFromQuery(+priceToQueryValue)
+    const isValidPriceQuery = checkPriceFromQuery(priceFromQueryValue) && checkPriceFromQuery(+priceToQueryValue)
+
+    console.log(isValidPriceQuery);
 
     return {
         isValidBoilerQuery,

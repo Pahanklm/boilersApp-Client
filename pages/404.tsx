@@ -6,14 +6,18 @@ const Custom404 = () => {
         <>
             <nav>
                 <div className="menu404">
-                    <p className="website_name">Boilers</p>
+                    <Link href='/dashboard' passHref legacyBehavior>
+                        <a>
+                            <img className="website_name" src="/img/logo.svg" alt="Boilers" />
+                        </a>
+                    </Link>
                     <div className="menu_links">
-                        <Link href='/dashboard' passHref legacyBehavior>
+                        <Link href='/about' passHref legacyBehavior>
                             <a className="link">
                                 about
                             </a>
                         </Link>
-                        <Link href='/dashboard' passHref legacyBehavior>
+                        <Link href='/contacts' passHref legacyBehavior>
                             <a className="link">
                                 contacts
                             </a>

@@ -55,7 +55,9 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
             const allPrices = allPartsData.map((item: IBoilerPart) => item.price);
             setAllItemsLowAndMaxPrice([0, Math.max(...allPrices)]);
             setMaxPrice(Math.max(...allPrices))
-            setMaxPriceLoaded(true);
+            setTimeout(() => {
+                setMaxPriceLoaded(true);
+            }, 50);
         } catch (error) {
             toast.error((error as Error).message)
         }
