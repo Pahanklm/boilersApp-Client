@@ -61,7 +61,9 @@ export const checkQueryParams = (router : NextRouter) => {
     ))
 
     
-    const checkPriceFromQuery = (price: number | string) => price  && price >= 0
+    const checkPriceFromQuery = (price: number | string) => price  && 
+    typeof price === 'number' && price >= 0;
+
     
     
     console.log(+priceFromQueryValue);

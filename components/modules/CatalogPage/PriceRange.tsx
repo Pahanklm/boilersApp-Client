@@ -28,14 +28,14 @@ const PriceRange = ({
                 <input
                     type="text"
                     value={Math.ceil(allItemsLowAndMaxPrice[0])}
-                    placeholder={allItemsLowAndMaxPrice[0]}
+                    placeholder={String(allItemsLowAndMaxPrice[0])}
                     readOnly
                 />
                 <span className={styles.filters__price__inputs__border} />
                 <input
                     type="text"
                     value={Math.ceil(allItemsLowAndMaxPrice[1])}
-                    placeholder={maxPrice}
+                    placeholder={String(maxPrice)}
                     readOnly
                 />
             </div>

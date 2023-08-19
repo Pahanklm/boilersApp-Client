@@ -98,3 +98,10 @@ export interface IFiltersPopupProps extends IFilterManufacturerAccordionProps{
     openPopup: boolean
     applyFilters: VoidFunction
 }
+
+export interface IPriceLowAndMax{
+  allItemsLowAndMaxPrice: number[]
+  setAllItemsLowAndMaxPrice: (arg0: number[])=> void
+  setIsPriceRangeChanged:(arg0: boolean) => void
+  maxPrice: number
+} 
