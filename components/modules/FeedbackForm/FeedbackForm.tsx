@@ -21,6 +21,7 @@ const FeedbackForm = () => {
     const city = useStore($userCity)
     const registrationLocation = sessionStorage.getItem('registrationLocation');
     const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : null;
+    console.log(parsedLocation);
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const {
         register,
