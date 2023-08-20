@@ -47,6 +47,8 @@ const FeedbackForm = () => {
         formRef.current.reset()
     }
 
+    console.log(formRef);
+
     return (
         <div className={`${styles.feedback_form} ${darkModeClass}`}>
             <h3 className={`${styles.feedback_form__title} ${darkModeClass}`}>
@@ -57,6 +59,7 @@ const FeedbackForm = () => {
                 className={styles.feedback_form__form}
                 onSubmit={handleSubmit(submitForm)}
             >
+                s
                 <NameInput
                     register={register}
                     errors={errors}
