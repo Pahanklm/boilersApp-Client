@@ -107,7 +107,7 @@ const Footer = () => {
                             </h3>
                             <ul className={styles.footer__bottom__block__pay}>
                                 <li className={styles.footer__bottom__block__pay__item}>
-                                    <img src="/img/footer/Apay.png" alt="apple-pay" />
+                                    <img src="/img/footer/APay.png" alt="apple-pay" />
                                 </li>
                                 <li className={styles.footer__bottom__block__pay__item}>
                                     <img src="/img/footer/Gpay.png" alt="google-pay" />
