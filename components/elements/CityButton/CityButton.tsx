@@ -60,6 +60,8 @@ const CityButton = () => {
 
         sessionStorage.setItem('registrationLocation', JSON.stringify(data));
 
+        console.log(data);
+        console.log(data.error);
 
 
         return data
