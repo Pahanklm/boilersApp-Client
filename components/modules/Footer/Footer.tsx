@@ -110,13 +110,13 @@ const Footer = () => {
                                     <img src="/img/footer/Apay.png" alt="apple-pay" />
                                 </li>
                                 <li className={styles.footer__bottom__block__pay__item}>
-                                    <img src="/img/footer/gpay.png" alt="google-pay" />
+                                    <img src="/img/footer/Gpay.png" alt="google-pay" />
                                 </li>
                                 <li className={styles.footer__bottom__block__pay__item}>
-                                    <img src="/img/footer/mastercard.png" alt="master-card" />
+                                    <img src="/img/footer/Mastercard.png" alt="master-card" />
                                 </li>
                                 <li className={styles.footer__bottom__block__pay__item}>
-                                    <img src="/img/footer/visa.png" alt="visa" />
+                                    <img src="/img/footer/Visa.png" alt="visa" />
                                 </li>
                             </ul>
                         </div>
