@@ -6,7 +6,7 @@ import spinnerStyles from '@/styles/spinner/index.module.scss';
 import FiltersPopupTop from "./FiltersPopupTop";
 import FiltersPopup from "./FiltersPopup";
 import { $boilerManufacturers, $partsManufacturers, setBoilerManufacturers, setPartsManufacturers, updateBoilerManufacturers, updatePartsManufacturers } from "@/context/boilerParts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "@/components/elements/Accordion/Accordion";
 import PriceRange from "./PriceRange";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -16,6 +16,24 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, closePopup, applyFilters, filtersMobileOpen, allItemsLowAndMaxPrice, setAllItemsLowAndMaxPrice, setIsPriceRangeChanged,
     maxPrice
 }: ICatalogFilterMobileProps) => {
+
+
+    const setFiltersHeightToViewportHeight = () => {
+        const filtersElement = document.querySelector('.catalog__bottom__filters') as HTMLElement;
+        if (filtersElement) {
+            const viewportHeight = window.innerHeight;
+            filtersElement.style.height = `${viewportHeight}px`;
+        }
+    }
+
+    useEffect(() => {
+        setFiltersHeightToViewportHeight();
+        window.addEventListener('resize', setFiltersHeightToViewportHeight);
+        return () => {
+            window.removeEventListener('resize', setFiltersHeightToViewportHeight);
+        };
+    }, []);
+
 
     const mode = useStore($mode)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
