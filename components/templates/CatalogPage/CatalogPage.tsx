@@ -217,11 +217,11 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                 </div>
                 <div className={styles.catalog__bottom}>
                     <div className={styles.catalog__bottom__inner}>
-                        {/* <CatalogFilters
+                        <CatalogFilters
                             allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                             setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
                             setIsPriceRangeChanged={setIsPriceRangeChanged}
-                            maxPrice={maxPrice}
+                            // maxPrice={maxPrice}
                             resetFilterBtnDisabled={resetFilterBtnDisabled}
                             resetFilters={resetFilters}
                             isPriceRangeChanged={isPriceRangeChanged}
@@ -232,7 +232,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                             setMaxPriceLoaded={setMaxPriceLoaded}
                             closePopup={closePopup}
                             filtersMobileOpen={open}
-                        /> */}
+                        />
                         {spinner ? (
                             <ul className={skeletonStyles.skeleton}>
                                 {Array.from(new Array(20)).map((_, i) => (

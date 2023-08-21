@@ -19,7 +19,7 @@ const CatalogFilters = ({
     isPriceRangeChanged,
     currentPage,
     setIsFilterInQuery,
-    maxPrice,
+    // maxPrice,
     maxPriceBoilerParts,
     maxPriceLoaded,
     closePopup,
@@ -267,7 +267,7 @@ const CatalogFilters = ({
                     resetFilterBtnDisabled={resetFilterBtnDisabled}
                     filtersMobileOpen={filtersMobileOpen}
                     resetFilters={resetFilters}
-                    maxPrice={maxPrice}
+                // maxPrice={maxPrice}
                 /> : <CatalogFiltersDesktop
                     allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                     setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
@@ -276,7 +276,7 @@ const CatalogFilters = ({
                     spinner={spinner}
                     resetFilters={resetFilters}
                     applyFilters={applyFilters}
-                    maxPrice={maxPrice}
+                // maxPrice={maxPrice}
                 />}
         </>
     );
