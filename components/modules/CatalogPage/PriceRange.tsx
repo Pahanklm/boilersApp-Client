@@ -11,7 +11,7 @@ const PriceRange = ({
     allItemsLowAndMaxPrice,
     setAllItemsLowAndMaxPrice,
     setIsPriceRangeChanged,
-    // maxPrice,
+    maxPrice,
 }: IPriceLowAndMax) => {
     const mode = useStore($mode)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
@@ -35,7 +35,7 @@ const PriceRange = ({
                 <input
                     type="text"
                     value={Math.ceil(allItemsLowAndMaxPrice[1])}
-                    placeholder={String(10000)}
+                    placeholder={String(maxPrice)}
                     readOnly
                 />
             </div>
@@ -43,7 +43,7 @@ const PriceRange = ({
                 values={allItemsLowAndMaxPrice}
                 step={STEP}
                 min={0}
-                max={100000}
+                max={10000}
                 onChange={handlePriceRangeChange}
                 renderTrack={({ props, children }) => (
                     <div
