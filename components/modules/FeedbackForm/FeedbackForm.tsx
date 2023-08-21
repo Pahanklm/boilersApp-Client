@@ -20,8 +20,6 @@ const FeedbackForm = () => {
     const mode = useStore($mode)
     const user = useStore($user)
     const city = useStore($userCity)
-    const registrationLocation = sessionStorage.getItem('registrationLocation');
-    const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : null;
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const {
         register,
@@ -32,10 +30,23 @@ const FeedbackForm = () => {
     const formRef = useRef() as MutableRefObject<HTMLFormElement>
 
 
+    const [registrationLocation, setRegistrationLocation] = useState(null);
+
     useEffect(() => {
-        console.log(1);
-        registrationGeolocation()
-    })
+        const fetchRegistrationLocation = async () => {
+            try {
+                const response = await registrationGeolocation();
+                const data = response.data
+                setRegistrationLocation(data);
+            } catch (error) {
+                console.error('Ошибка получения данных:', error);
+            }
+        };
+
+        fetchRegistrationLocation();
+    }, []);
+    const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : null;
+
 
 
     const submitForm = () => {
