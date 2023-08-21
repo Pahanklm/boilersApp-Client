@@ -206,7 +206,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
             window.removeEventListener("scroll", checkUrlVisibility);
             window.removeEventListener("resize", checkUrlVisibility);
         };
-    }, []);
+    }, [window.addEventListener("scroll", checkUrlVisibility)]);
 
 
 
