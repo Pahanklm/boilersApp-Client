@@ -267,7 +267,7 @@ const CatalogFilters = ({
                     resetFilterBtnDisabled={resetFilterBtnDisabled}
                     filtersMobileOpen={filtersMobileOpen}
                     resetFilters={resetFilters}
-                // maxPrice={maxPrice}
+                    maxPrice={maxPrice}
                 /> : <CatalogFiltersDesktop
                     allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                     setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
