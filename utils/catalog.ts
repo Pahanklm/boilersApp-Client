@@ -61,19 +61,15 @@ export const checkQueryParams = (router : NextRouter) => {
     ))
 
     
-    const checkPriceFromQuery = (price: number | string) => price  && 
-    typeof price === 'number' && price >= 0;
+    const checkPriceFromQuery = (price: number | string) => price
 
     
     
-    console.log(+priceFromQueryValue);
-    console.log(+priceToQueryValue);
     
     const isValidBoilerQuery = Array.isArray(boilerQueryValue) && !!boilerQueryValue?.length
     const isValidPartsQuery = Array.isArray(partsQueryValue) && !!partsQueryValue?.length
     const isValidPriceQuery = checkPriceFromQuery(priceFromQueryValue) && checkPriceFromQuery(+priceToQueryValue)
 
-    console.log(isValidPriceQuery);
 
     return {
         isValidBoilerQuery,
