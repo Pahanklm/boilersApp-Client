@@ -56,7 +56,7 @@ export interface ICatalogFiltersProps{
     allItemsLowAndMaxPrice: number[];
     setAllItemsLowAndMaxPrice: (arg0: number[])=> void;
     setIsPriceRangeChanged:(arg0: boolean) => void
-    // maxPrice: number
+    maxPrice: number
     maxPriceBoilerParts: VoidFunction
     maxPriceLoaded: boolean
     setMaxPriceLoaded : (arg0: boolean) => void
@@ -67,7 +67,7 @@ export interface ICatalogFiltersProps{
 export interface ICatalogFiltersDesktopProps{
     resetFilters: VoidFunction
     resetFilterBtnDisabled: boolean
-    // maxPrice: number
+    maxPrice: number
     allItemsLowAndMaxPrice: number[]
     setAllItemsLowAndMaxPrice: (arg0: number[])=> void;
     setIsPriceRangeChanged:(arg0: boolean) => void
@@ -82,7 +82,7 @@ export interface ICatalogFiltersDesktopProps{
   applyFilters: VoidFunction
   closePopup: VoidFunction
   filtersMobileOpen: boolean
-  // maxPrice: number
+  maxPrice: number
 }
   export interface IFiltersPopupTop{
     resetBtnText: string
@@ -103,5 +103,5 @@ export interface IPriceLowAndMax{
   allItemsLowAndMaxPrice: number[]
   setAllItemsLowAndMaxPrice: (arg0: number[])=> void
   setIsPriceRangeChanged:(arg0: boolean) => void
-  // maxPrice: number
+  maxPrice: number
 } 

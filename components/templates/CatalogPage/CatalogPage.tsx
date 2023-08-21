@@ -221,7 +221,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                             allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                             setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
                             setIsPriceRangeChanged={setIsPriceRangeChanged}
-                            // maxPrice={maxPrice}
+                            maxPrice={maxPrice}
                             resetFilterBtnDisabled={resetFilterBtnDisabled}
                             resetFilters={resetFilters}
                             isPriceRangeChanged={isPriceRangeChanged}

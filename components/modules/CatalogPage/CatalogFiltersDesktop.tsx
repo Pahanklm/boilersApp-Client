@@ -9,9 +9,7 @@ import FilterManufacturerAccordion from "./FilterManufacturerAccordion";
 import PriceRange from "./PriceRange";
 
 
-const CatalogFiltersDesktop = ({ resetFilters, spinner, resetFilterBtnDisabled,
-    // maxPrice, 
-    allItemsLowAndMaxPrice, setAllItemsLowAndMaxPrice, setIsPriceRangeChanged, applyFilters }: ICatalogFiltersDesktopProps) => {
+const CatalogFiltersDesktop = ({ resetFilters, spinner, resetFilterBtnDisabled, maxPrice, allItemsLowAndMaxPrice, setAllItemsLowAndMaxPrice, setIsPriceRangeChanged, applyFilters }: ICatalogFiltersDesktopProps) => {
     const mode = useStore($mode)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const boilerManufacturers = useStore($boilerManufacturers)
@@ -40,7 +38,7 @@ const CatalogFiltersDesktop = ({ resetFilters, spinner, resetFilterBtnDisabled,
                         allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                         setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
                         setIsPriceRangeChanged={setIsPriceRangeChanged}
-                    // maxPrice={maxPrice}
+                        maxPrice={maxPrice}
                     />
                 </Accordion>
             </div>

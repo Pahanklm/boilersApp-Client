@@ -14,7 +14,7 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 
 const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, closePopup, applyFilters, filtersMobileOpen, allItemsLowAndMaxPrice, setAllItemsLowAndMaxPrice, setIsPriceRangeChanged,
-    // maxPrice
+    maxPrice
 }: ICatalogFilterMobileProps) => {
 
     const mode = useStore($mode)
@@ -99,7 +99,7 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
                             allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                             setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
                             setIsPriceRangeChanged={setIsPriceRangeChanged}
-                        // maxPrice={maxPrice}
+                            maxPrice={maxPrice}
                         />
                     </Accordion>
                 </div>

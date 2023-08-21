@@ -19,7 +19,7 @@ const CatalogFilters = ({
     isPriceRangeChanged,
     currentPage,
     setIsFilterInQuery,
-    // maxPrice,
+    maxPrice,
     maxPriceBoilerParts,
     maxPriceLoaded,
     closePopup,
@@ -276,7 +276,7 @@ const CatalogFilters = ({
                     spinner={spinner}
                     resetFilters={resetFilters}
                     applyFilters={applyFilters}
-                // maxPrice={maxPrice}
+                    maxPrice={maxPrice}
                 />}
         </>
     );
