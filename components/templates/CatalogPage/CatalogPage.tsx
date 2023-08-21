@@ -187,26 +187,23 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
 
 
 
+
     const [isUrlVisible, setIsUrlVisible] = useState(true);
 
     const checkUrlVisibility = () => {
-        setIsUrlVisible(window.innerWidth === window.screen.width);
+        setIsUrlVisible(!document.hidden);
     };
 
     useEffect(() => {
-        // Добавляем обработчики событий прокрутки и изменения размера окна
-        window.addEventListener("scroll", checkUrlVisibility);
-        window.addEventListener("resize", checkUrlVisibility);
+        // Добавляем обработчик события изменения видимости страницы (скрыто или активно)
+        document.addEventListener("visibilitychange", checkUrlVisibility);
 
-        // Вызываем функцию проверки видимости при монтировании компонента
-        checkUrlVisibility();
-
-        // Очищаем обработчики событий при размонтировании компонента
+        // Очищаем обработчик события при размонтировании компонента
         return () => {
-            window.removeEventListener("scroll", checkUrlVisibility);
-            window.removeEventListener("resize", checkUrlVisibility);
+            document.removeEventListener("visibilitychange", checkUrlVisibility);
         };
-    }, [window.addEventListener("scroll", checkUrlVisibility)]);
+    }, []);
+
 
 
 
@@ -277,9 +274,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                             )}
                         </ul>}
                     </div>
-                    <div>
-                        <p>URL {isUrlVisible ? "виден" : "скрыт"}</p>
-                    </div>
+
                     <ReactPaginate containerClassName={styles.catalog__bottom__list}
                         pageClassName={styles.catalog__bottom__list__item}
                         pageLinkClassName={styles.catalog__bottom__list__item__link}
