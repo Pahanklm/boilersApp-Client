@@ -186,7 +186,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
 
     return (
         <section className={styles.catalog}>
-            <div className={`container ${styles.catalog__container}`}>
+            {/* <div className={`container ${styles.catalog__container}`}>
                 <h2 className={`${styles.catalog__title} ${darkModeClass}`}>Каталог товаров </h2>
                 <div className={`${styles.catalog__top} ${darkModeClass}`} >
                     <AnimatePresence>
@@ -262,7 +262,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                     />
 
                 </div>
-            </div>
+            </div> */}
         </section >
     );
 }
