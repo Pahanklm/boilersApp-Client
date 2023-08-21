@@ -19,7 +19,7 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
 
 
     const setFiltersHeightToViewportHeight = () => {
-        const filtersElement = document.querySelector('.catalog__bottom__filters__inner') as HTMLElement;
+        const filtersElement = document.querySelector('.catalog__bottom__filters') as HTMLElement;
         if (filtersElement) {
             const viewportHeight = window.innerHeight;
             filtersElement.style.height = `${viewportHeight}px`;
@@ -60,7 +60,7 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
     }
 
     return (
-        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`}>
+        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} style={{ position: 'fixed', top: 0, left: 0, right: 0 }}>
             <div className={styles.catalog__bottom__filters__inner}>
                 <FiltersPopupTop
                     resetBtnText='Сбросить все'
