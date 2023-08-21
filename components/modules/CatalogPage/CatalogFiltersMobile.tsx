@@ -18,14 +18,6 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
 }: ICatalogFilterMobileProps) => {
 
 
-    const setFiltersHeightToViewportHeight = () => {
-        const filtersElement = document.querySelector('.catalog__bottom__filters') as HTMLElement;
-        if (filtersElement) {
-            const viewportHeight = window.innerHeight;
-            filtersElement.style.height = `${viewportHeight}px`;
-        }
-    }
-
 
 
     const mode = useStore($mode)
@@ -43,14 +35,6 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
     const resetAllBoilerManufacturers = () => setBoilerManufacturers(boilerManufacturers.map((item) => ({ ...item, checked: false })))
     const resetAllPartsManufacturers = () => setPartsManufacturers(partsManufacturers.map((item) => ({ ...item, checked: false })))
     const isMobile = useMediaQuery(820)
-
-    useEffect(() => {
-        setFiltersHeightToViewportHeight();
-        window.addEventListener('resize', setFiltersHeightToViewportHeight);
-        return () => {
-            window.removeEventListener('resize', setFiltersHeightToViewportHeight);
-        };
-    }, [openParts]);
 
 
 
