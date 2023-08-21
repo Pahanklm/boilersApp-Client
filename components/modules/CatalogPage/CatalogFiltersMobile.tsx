@@ -19,7 +19,7 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
 
 
     const setFiltersHeightToViewportHeight = () => {
-        const filtersElement = document.querySelector('.catalog__bottom__filters') as HTMLElement;
+        const filtersElement = document.querySelector('.catalog__bottom__filters__inner') as HTMLElement;
         if (filtersElement) {
             const viewportHeight = window.innerHeight;
             filtersElement.style.height = `${viewportHeight}px`;
