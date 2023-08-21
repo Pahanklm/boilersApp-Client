@@ -43,7 +43,7 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
                 disabled={spinner}
                 onClick={toggleToCart}
             >
-                {false ? (
+                {spinner ? (
                     <div className={spinnerStyles.spinner} style={{ top: 6, left: 6 }} />
                 ) : (
                     <span>{isInCart ? <CartHoverCheckedSvg /> : <CartHoverSvg />}</span>
