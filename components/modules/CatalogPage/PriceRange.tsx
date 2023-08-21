@@ -43,7 +43,7 @@ const PriceRange = ({
                 values={allItemsLowAndMaxPrice}
                 step={STEP}
                 min={0}
-                max={maxPrice}
+                max={maxPrice || 10000}
                 onChange={handlePriceRangeChange}
                 renderTrack={({ props, children }) => (
                     <div
