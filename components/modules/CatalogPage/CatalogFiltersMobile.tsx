@@ -42,9 +42,29 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
         applyFilters()
         closePopup()
     }
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [filtersHeight, setFiltersHeight] = useState(0);
+
+    useEffect(() => {
+        if (isFiltersOpen) {
+            document.body.style.overflow = "hidden"; // Запрещаем прокрутку страницы
+            setFiltersHeight(window.innerHeight);
+        } else {
+            document.body.style.overflow = "auto"; // Восстанавливаем прокрутку страницы
+            setFiltersHeight(0);
+        }
+    }, [isFiltersOpen]);
+
+    const toggleFilters = () => {
+        setIsFiltersOpen(!isFiltersOpen);
+    }
+
+    const filtersStyle = {
+        height: filtersHeight ? `${filtersHeight}px` : "auto"
+    };
 
     return (
-        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} >
+        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} style={filtersStyle} >
             <div className={styles.catalog__bottom__filters__inner}>
                 <FiltersPopupTop
                     resetBtnText='Сбросить все'
