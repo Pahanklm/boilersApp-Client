@@ -1,15 +1,15 @@
-import { $mode } from "@/context/mode";
-import { useStore } from "effector-react";
-import styles from '@/styles/catalog/index.module.scss';
-import { ICatalogFilterMobileProps } from "@/types/catalog";
-import spinnerStyles from '@/styles/spinner/index.module.scss';
-import FiltersPopupTop from "./FiltersPopupTop";
-import FiltersPopup from "./FiltersPopup";
-import { $boilerManufacturers, $partsManufacturers, setBoilerManufacturers, setPartsManufacturers, updateBoilerManufacturers, updatePartsManufacturers } from "@/context/boilerParts";
-import { useEffect, useState } from "react";
 import Accordion from "@/components/elements/Accordion/Accordion";
-import PriceRange from "./PriceRange";
+import { $boilerManufacturers, $partsManufacturers, setBoilerManufacturers, setPartsManufacturers, updateBoilerManufacturers, updatePartsManufacturers } from "@/context/boilerParts";
+import { $mode } from "@/context/mode";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import styles from '@/styles/catalog/index.module.scss';
+import spinnerStyles from '@/styles/spinner/index.module.scss';
+import { ICatalogFilterMobileProps } from "@/types/catalog";
+import { useStore } from "effector-react";
+import { useEffect, useState } from "react";
+import FiltersPopup from "./FiltersPopup";
+import FiltersPopupTop from "./FiltersPopupTop";
+import PriceRange from "./PriceRange";
 
 
 
@@ -42,29 +42,26 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
         applyFilters()
         closePopup()
     }
-    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-    const [filtersHeight, setFiltersHeight] = useState(0);
 
-    useEffect(() => {
-        if (isFiltersOpen) {
-            document.body.style.overflow = "hidden"; // Запрещаем прокрутку страницы
-            setFiltersHeight(window.innerHeight);
-        } else {
-            document.body.style.overflow = "auto"; // Восстанавливаем прокрутку страницы
-            setFiltersHeight(0);
-        }
-    }, [isFiltersOpen]);
+    const [isUrlVisible, setIsUrlVisible] = useState(true);
 
-    const toggleFilters = () => {
-        setIsFiltersOpen(!isFiltersOpen);
-    }
-
-    const filtersStyle = {
-        height: filtersHeight ? `${filtersHeight}px` : "auto"
+    const checkUrlVisibility = () => {
+        setIsUrlVisible(!document.hidden);
     };
 
+    useEffect(() => {
+        // Добавляем обработчик события изменения видимости страницы (скрыто или активно)
+        document.addEventListener("visibilitychange", checkUrlVisibility);
+
+        // Очищаем обработчик события при размонтировании компонента
+        return () => {
+            document.removeEventListener("visibilitychange", checkUrlVisibility);
+        };
+    }, []);
+
+
     return (
-        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} style={filtersStyle} >
+        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} >
             <div className={styles.catalog__bottom__filters__inner}>
                 <FiltersPopupTop
                     resetBtnText='Сбросить все'
@@ -130,6 +127,10 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
             <div className={styles.filters__actions}>
                 <button className={styles.catalog__filters__actions__show} disabled={resetFilterBtnDisabled} onClick={applyFiltersAndClosePopup}>{spinner ? (<span className={spinnerStyles.spinner} style={{ top: 6, left: '47%' }} />) : ('Показать')}</button>
             </div>
+            <div>
+                <p>URL {isUrlVisible ? "виден" : "скрыт"}</p>
+            </div>
+
         </div>
     );
 }
