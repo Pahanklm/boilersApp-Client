@@ -187,23 +187,26 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
 
 
 
-
     const [isUrlVisible, setIsUrlVisible] = useState(true);
 
     const checkUrlVisibility = () => {
-        setIsUrlVisible(!document.hidden);
+        setIsUrlVisible(window.innerWidth === window.screen.width);
     };
 
     useEffect(() => {
-        // Добавляем обработчик события изменения видимости страницы (скрыто или активно)
-        document.addEventListener("visibilitychange", checkUrlVisibility);
+        // Добавляем обработчики событий прокрутки и изменения размера окна
+        window.addEventListener("scroll", checkUrlVisibility);
+        window.addEventListener("resize", checkUrlVisibility);
 
-        // Очищаем обработчик события при размонтировании компонента
+        // Вызываем функцию проверки видимости при монтировании компонента
+        checkUrlVisibility();
+
+        // Очищаем обработчики событий при размонтировании компонента
         return () => {
-            document.removeEventListener("visibilitychange", checkUrlVisibility);
+            window.removeEventListener("scroll", checkUrlVisibility);
+            window.removeEventListener("resize", checkUrlVisibility);
         };
     }, []);
-
 
 
 
