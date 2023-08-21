@@ -44,7 +44,7 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
     }
 
     return (
-        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} style={{ position: 'fixed', top: 0, left: 0, right: 0 }}>
+        <div className={`${styles.catalog__bottom__filters} ${darkModeClass} ${filtersMobileOpen ? styles.open : ''}`} >
             <div className={styles.catalog__bottom__filters__inner}>
                 <FiltersPopupTop
                     resetBtnText='Сбросить все'
