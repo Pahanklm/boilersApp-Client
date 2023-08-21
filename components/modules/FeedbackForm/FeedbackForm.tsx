@@ -30,7 +30,7 @@ const FeedbackForm = () => {
     const formRef = useRef() as MutableRefObject<HTMLFormElement>
 
 
-    const [registrationLocation, setRegistrationLocation] = useState(null);
+    const [registrationLocation, setRegistrationLocation] = useState<any>(null);
 
     useEffect(() => {
         const fetchRegistrationLocation = async () => {
@@ -45,7 +45,7 @@ const FeedbackForm = () => {
 
         fetchRegistrationLocation();
     }, []);
-    const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : undefined;
+    const parsedLocation = registrationLocation || {};
 
 
 
@@ -132,14 +132,14 @@ const FeedbackForm = () => {
                 <div style={{ display: 'none' }}>
                     <input
                         name='registrationCity'
-                        value={parsedLocation ? parsedLocation.registrationCity : ''}
+                        value={parsedLocation.registrationCity || ''}
                         onChange={(e) => {
                         }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='registrationStreet'
-                        value={parsedLocation ? parsedLocation.registrationStreet : ''}
+                        value={parsedLocation.registrationStreet || ''}
                         onChange={(e) => {
                         }}
                     /></div>
