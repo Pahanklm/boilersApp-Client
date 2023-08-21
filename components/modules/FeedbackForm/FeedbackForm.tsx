@@ -45,7 +45,7 @@ const FeedbackForm = () => {
 
         fetchRegistrationLocation();
     }, []);
-    const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : null;
+    const parsedLocation = registrationLocation ? JSON.parse(registrationLocation) : undefined;
 
 
 
