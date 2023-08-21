@@ -47,7 +47,6 @@ const FeedbackForm = () => {
         formRef.current.reset()
     }
 
-    console.log(formRef);
 
     return (
         <div className={`${styles.feedback_form} ${darkModeClass}`}>
@@ -59,7 +58,6 @@ const FeedbackForm = () => {
                 className={styles.feedback_form__form}
                 onSubmit={handleSubmit(submitForm)}
             >
-                s
                 <NameInput
                     register={register}
                     errors={errors}
@@ -84,36 +82,50 @@ const FeedbackForm = () => {
                     <input
                         name='userEmail'
                         value={user.email}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='userName'
                         value={user.username}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='userId'
                         value={user.userID}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='currentCity'
                         value={city.city}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='currentStreet'
                         value={city.street}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='registrationCity'
                         value={parsedLocation.registrationCity}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='registrationStreet'
                         value={parsedLocation.registrationStreet}
+                        onChange={(e) => {
+                        }}
                     /></div>
                 <div className={styles.feedback_form__form__btn}>
                     <button>

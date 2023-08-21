@@ -23,7 +23,7 @@ export const getCity = async () => {
             const result = await getGeolocationFx({ latitude, longitude });
             data = result.data;
         } catch (geoError) {
-
+console.log(geoError);
         }
         
         setUserCity({

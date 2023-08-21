@@ -57,8 +57,8 @@ const CityButton = () => {
 
     const registrationGeolocation = async () => {
         const data = await getRegistrationGeolocationFx()
-
-        sessionStorage.setItem('registrationLocation', JSON.stringify(data));
+        console.log(data.data.registrationLocation);
+        sessionStorage.setItem('registrationLocation', data.data.registrationLocation);
 
 
 
