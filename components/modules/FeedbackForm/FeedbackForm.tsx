@@ -132,14 +132,14 @@ const FeedbackForm = () => {
                 <div style={{ display: 'none' }}>
                     <input
                         name='registrationCity'
-                        value={parsedLocation.registrationCity}
+                        value={parsedLocation ? parsedLocation.registrationCity : ''}
                         onChange={(e) => {
                         }}
                     /></div>
                 <div style={{ display: 'none' }}>
                     <input
                         name='registrationStreet'
-                        value={parsedLocation.registrationStreet}
+                        value={parsedLocation ? parsedLocation.registrationStreet : ''}
                         onChange={(e) => {
                         }}
                     /></div>
