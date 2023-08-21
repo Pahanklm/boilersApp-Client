@@ -1,4 +1,4 @@
-import { removeFromCartFx } from '@/app/api/shopping-cart'
+import { addToCartFx, removeFromCartFx } from '@/app/api/shopping-cart'
 import CartHoverCheckedSvg from '@/components/elements/CartHoverCheckedSvg/CartHoverCheckedSvg'
 import CartHoverSvg from '@/components/elements/CartHoverSvg/CartHoverSvg'
 import { $mode } from '@/context/mode'
@@ -18,7 +18,7 @@ const CatalogItem = ({ item }: { item: IBoilerPart }) => {
     const shoppingCart = useStore($shoppingCart)
     const isInCart = shoppingCart.some((cartItem) => cartItem.partId === item.id)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
-    const spinner = useStore(removeFromCartFx.pending)
+    const spinner = useStore(removeFromCartFx.pending, addToCartFx.pending)
 
     const toggleToCart = () => toggleCartItem(user.username, item.id, isInCart)
 
