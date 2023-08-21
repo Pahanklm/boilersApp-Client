@@ -217,7 +217,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                 </div>
                 <div className={styles.catalog__bottom}>
                     <div className={styles.catalog__bottom__inner}>
-                        <CatalogFilters
+                        {/* <CatalogFilters
                             allItemsLowAndMaxPrice={allItemsLowAndMaxPrice}
                             setAllItemsLowAndMaxPrice={setAllItemsLowAndMaxPrice}
                             setIsPriceRangeChanged={setIsPriceRangeChanged}
@@ -232,7 +232,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                             setMaxPriceLoaded={setMaxPriceLoaded}
                             closePopup={closePopup}
                             filtersMobileOpen={open}
-                        />
+                        /> */}
                         {spinner ? (
                             <ul className={skeletonStyles.skeleton}>
                                 {Array.from(new Array(20)).map((_, i) => (
@@ -248,7 +248,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                             )}
                         </ul>}
                     </div>
-                    {/* <ReactPaginate containerClassName={styles.catalog__bottom__list}
+                    <ReactPaginate containerClassName={styles.catalog__bottom__list}
                         pageClassName={styles.catalog__bottom__list__item}
                         pageLinkClassName={styles.catalog__bottom__list__item__link}
                         previousClassName={styles.catalog__bottom__list__prev}
@@ -259,7 +259,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                         pageCount={pagesCount}
                         forcePage={Math.min(currentPage, pagesCount - 1)}
                         onPageChange={handlePageChange}
-                    /> */}
+                    />
 
                 </div>
             </div>
