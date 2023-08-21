@@ -29,7 +29,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
     const [spinner, setSpinner] = useState(false)
     const pagesCount = Math.ceil((boilerParts.count || 0) / 20);
     const isValidOffset = query.offset && !isNaN(+query.offset) && +query.offset > 0
-    const [currentPage, setCurrentPage] = useState(isValidOffset ? +query.offset - 1 : 0)
+    const [currentPage, setCurrentPage] = useState(isValidOffset ? Math.max(+query.offset - 1, 0) : 0)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const router = useRouter()
     const [allItemsLowAndMaxPrice, setAllItemsLowAndMaxPrice] = useState<number[]>([0, 0]);
@@ -257,7 +257,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                         breakClassName={styles.catalog__bottom__list__break}
                         breakLinkClassName={`${styles.catalog__bottom__list__break__link} ${darkModeClass}`}
                         pageCount={pagesCount}
-                        forcePage={currentPage}
+                        forcePage={Math.min(currentPage, pagesCount - 1)}
                         onPageChange={handlePageChange}
                     />
 
