@@ -1,9 +1,9 @@
-import { getGeolocationFx, getRegistrationGeolocationFx, postCurrentGeolocationFx } from "@/app/api/geolocation"
+import { getGeolocationFx, postCurrentGeolocationFx } from "@/app/api/geolocation"
 import { $mode } from "@/context/mode"
 import { $userCity, setUserCity } from "@/context/user"
 import styles from "@/styles/cityButton/index.module.scss"
 import spinnerStyles from '@/styles/spinner/index.module.scss'
-import { getCity } from "@/utils/getCity"
+import { getCity, registrationGeolocation } from "@/utils/getCity"
 import { useStore } from "effector-react"
 import { useEffect } from "react"
 import LocationSvg from "../LocationSvg/LocationSvg"
@@ -12,7 +12,7 @@ import LocationSvg from "../LocationSvg/LocationSvg"
 const CityButton = () => {
 
     const mode = useStore($mode)
-    const { city } = useStore($userCity)
+    const { city } = useStore($userCity) as { city: string, street: string };
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
     const spinner = useStore(getGeolocationFx.pending)
 
@@ -55,11 +55,6 @@ const CityButton = () => {
 
 
 
-    const registrationGeolocation = async () => {
-        const data = await getRegistrationGeolocationFx()
-        sessionStorage.setItem('registrationLocation', JSON.stringify(data.data));
-        return data
-    }
 
     return (
         <button className={styles.city} onClick={getCity}

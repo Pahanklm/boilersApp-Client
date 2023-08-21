@@ -12,6 +12,7 @@ import PhoneInput from './PhoneInput'
 import emailjs from '@emailjs/browser'
 import { toast } from 'react-toastify'
 import { $user, $userCity } from '@/context/user'
+import { registrationGeolocation } from '@/utils/getCity'
 
 
 
@@ -30,6 +31,11 @@ const FeedbackForm = () => {
     const [spinner, setSpinner] = useState(false)
     const formRef = useRef() as MutableRefObject<HTMLFormElement>
 
+
+    useEffect(() => {
+        console.log(1);
+        registrationGeolocation()
+    })
 
 
     const submitForm = () => {

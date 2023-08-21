@@ -1,4 +1,4 @@
-import { getApproxGeolocationFx, getGeolocationFx } from "@/app/api/geolocation";
+import { getApproxGeolocationFx, getGeolocationFx, getRegistrationGeolocationFx } from "@/app/api/geolocation";
 import { setUserCity } from "@/context/user";
 import { toast } from "react-toastify";
 
@@ -36,4 +36,11 @@ console.log(geoError);
     } catch (error) {
         toast.error((error as Error).message);
     }
+}
+
+
+export const registrationGeolocation = async () => {
+    const data = await getRegistrationGeolocationFx()
+    sessionStorage.setItem('registrationLocation', JSON.stringify(data.data));
+    return data
 }
