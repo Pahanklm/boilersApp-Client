@@ -6,7 +6,7 @@ import styles from '@/styles/catalog/index.module.scss';
 import spinnerStyles from '@/styles/spinner/index.module.scss';
 import { ICatalogFilterMobileProps } from "@/types/catalog";
 import { useStore } from "effector-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FiltersPopup from "./FiltersPopup";
 import FiltersPopupTop from "./FiltersPopupTop";
 import PriceRange from "./PriceRange";
@@ -42,22 +42,6 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
         applyFilters()
         closePopup()
     }
-
-    const [isUrlVisible, setIsUrlVisible] = useState(true);
-
-    const checkUrlVisibility = () => {
-        setIsUrlVisible(!document.hidden);
-    };
-
-    useEffect(() => {
-        // Добавляем обработчик события изменения видимости страницы (скрыто или активно)
-        document.addEventListener("visibilitychange", checkUrlVisibility);
-
-        // Очищаем обработчик события при размонтировании компонента
-        return () => {
-            document.removeEventListener("visibilitychange", checkUrlVisibility);
-        };
-    }, []);
 
 
     return (
@@ -127,10 +111,6 @@ const CatalogFiltersMobile = ({ spinner, resetFilterBtnDisabled, resetFilters, c
             <div className={styles.filters__actions}>
                 <button className={styles.catalog__filters__actions__show} disabled={resetFilterBtnDisabled} onClick={applyFiltersAndClosePopup}>{spinner ? (<span className={spinnerStyles.spinner} style={{ top: 6, left: '47%' }} />) : ('Показать')}</button>
             </div>
-            <div>
-                <p>URL {isUrlVisible ? "виден" : "скрыт"}</p>
-            </div>
-
         </div>
     );
 }

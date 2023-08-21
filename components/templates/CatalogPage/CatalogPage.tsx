@@ -184,6 +184,32 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
         }
     }
 
+
+
+
+
+    const [isUrlVisible, setIsUrlVisible] = useState(true);
+
+    const checkUrlVisibility = () => {
+        setIsUrlVisible(!document.hidden);
+    };
+
+    useEffect(() => {
+        // Добавляем обработчик события изменения видимости страницы (скрыто или активно)
+        document.addEventListener("visibilitychange", checkUrlVisibility);
+
+        // Очищаем обработчик события при размонтировании компонента
+        return () => {
+            document.removeEventListener("visibilitychange", checkUrlVisibility);
+        };
+    }, []);
+
+
+
+
+
+
+
     return (
         <section className={styles.catalog}>
             <div className={`container ${styles.catalog__container}`}>
@@ -247,6 +273,9 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
                                 <span>Список товаров пуст...</span>
                             )}
                         </ul>}
+                    </div>
+                    <div>
+                        <p>URL {isUrlVisible ? "виден" : "скрыт"}</p>
                     </div>
                     <ReactPaginate containerClassName={styles.catalog__bottom__list}
                         pageClassName={styles.catalog__bottom__list__item}
