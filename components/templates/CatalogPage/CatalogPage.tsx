@@ -27,7 +27,7 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
     const filteredBoilerParts = useStore($filteredBoilerParts)
     const boilerParts = useStore($boilerParts)
     const [spinner, setSpinner] = useState(false)
-    const pagesCount = Math.ceil(boilerParts.count / 20)
+    const pagesCount = Math.ceil((boilerParts.count || 0) / 20);
     const isValidOffset = query.offset && !isNaN(+query.offset) && +query.offset > 0
     const [currentPage, setCurrentPage] = useState(isValidOffset ? +query.offset - 1 : 0)
     const darkModeClass = mode === 'dark' ? `${styles.dark_mode}` : ''
